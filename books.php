@@ -5,7 +5,6 @@
   <title>View Books</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Additional CSS styling for the book list */
     .book-list {
       margin-top: 20px;
     }
@@ -25,6 +24,16 @@
     .book-list table th {
       background-color: #f2f2f2;
     }
+
+    .add-book-form {
+      margin-top: 20px;
+    }
+
+    .add-book-form input[type="text"],
+    .add-book-form input[type="submit"] {
+      padding: 8px;
+      font-size: 16px;
+    }
   </style>
 </head>
 
@@ -42,37 +51,50 @@
   </nav>
 
   <main>
-    <h2>View Books</h2>
+    
+      <h3>Add Book</h3>
+      <form action="add_book.php" method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
 
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+
+        <input type="submit" value="Add Book">
+      </form>
+    </div>
+     <div class="add-book-form">
     <div class="book-list">
+      <h3>List of Books</h3>
       <table>
         <thead>
           <tr>
+            <th>Book ID</th>
             <th>Title</th>
             <th>Author</th>
           </tr>
         </thead>
         <tbody>
           <?php
-         $servername = "localhost";
+            $servername = "localhost";
         $username = "root";
-        $password = "123";
+        $password = "";
         $dbname = "library_management_system";
+
           $conn = new mysqli($servername, $username, $password, $dbname);
           if ($conn->connect_error) {
               die("Connection failed: " . $conn->connect_error);
           }
 
-          // Retrieve books from the database
           $sql = "SELECT * FROM books";
           $result = $conn->query($sql);
 
           if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
-                  echo "<tr><td>" . $row["title"] . "</td><td>" . $row["author"] . "</td></tr>";
+                  echo "<tr><td>" . $row["id"] . "</td><td>" . $row["title"] . "</td><td>" . $row["author"] . "</td></tr>";
               }
           } else {
-              echo "<tr><td colspan='2'>No books found.</td></tr>";
+              echo "<tr><td colspan='3'>No books available.</td></tr>";
           }
 
           $conn->close();
@@ -80,6 +102,8 @@
         </tbody>
       </table>
     </div>
+
+   
   </main>
 
   <footer>

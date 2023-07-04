@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Add Book</title>
+  <title>Library Online</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,21 +20,20 @@
   </nav>
 
   <main>
-    <h2>Add Book</h2>
-    <form action="add_book.php" method="POST">
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title" required>
+    <h2>Welcome to Library Online</h2>
+    <p>Explore the available books and borrow what you need.</p>
 
-      <label for="author">Author:</label>
-      <input type="text" id="author" name="author" required>
-
-      <input type="submit" value="Add Book">
-    </form>
+    <div id="bookList">
+      <h3>Available Books</h3>
+      <ul id="books"></ul>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2023 Library Online. All rights reserved.</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
